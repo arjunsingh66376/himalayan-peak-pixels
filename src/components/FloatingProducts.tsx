@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
-import { Float, Text3D, Box, Sphere, Cylinder } from '@react-three/drei';
+import { Float } from '@react-three/drei';
 import * as THREE from 'three';
 
 // Honey Jar Component
@@ -17,17 +17,20 @@ const HoneyJar = ({ position }: { position: [number, number, number] }) => {
     <Float speed={2} rotationIntensity={0.5} floatIntensity={0.5}>
       <group ref={jarRef} position={position}>
         {/* Jar Body */}
-        <Cylinder args={[0.3, 0.35, 0.8, 8]} position={[0, 0, 0]}>
+        <mesh position={[0, 0, 0]}>
+          <cylinderGeometry args={[0.3, 0.35, 0.8, 8]} />
           <meshPhongMaterial color="#FFA500" transparent opacity={0.8} />
-        </Cylinder>
+        </mesh>
         {/* Jar Lid */}
-        <Cylinder args={[0.32, 0.32, 0.1, 8]} position={[0, 0.45, 0]}>
+        <mesh position={[0, 0.45, 0]}>
+          <cylinderGeometry args={[0.32, 0.32, 0.1, 8]} />
           <meshPhongMaterial color="#8B4513" />
-        </Cylinder>
+        </mesh>
         {/* Honey inside */}
-        <Cylinder args={[0.28, 0.32, 0.7, 8]} position={[0, -0.05, 0]}>
+        <mesh position={[0, -0.05, 0]}>
+          <cylinderGeometry args={[0.28, 0.32, 0.7, 8]} />
           <meshPhongMaterial color="#FFD700" transparent opacity={0.9} />
-        </Cylinder>
+        </mesh>
       </group>
     </Float>
   );
@@ -47,18 +50,20 @@ const HerbBasket = ({ position }: { position: [number, number, number] }) => {
     <Float speed={1.5} rotationIntensity={0.3} floatIntensity={0.8}>
       <group ref={basketRef} position={position}>
         {/* Basket */}
-        <Cylinder args={[0.4, 0.3, 0.3, 8]} position={[0, 0, 0]}>
+        <mesh position={[0, 0, 0]}>
+          <cylinderGeometry args={[0.4, 0.3, 0.3, 8]} />
           <meshLambertMaterial color="#8B4513" />
-        </Cylinder>
+        </mesh>
         {/* Herbs */}
         {[...Array(5)].map((_, i) => (
-          <Sphere key={i} args={[0.05]} position={[
+          <mesh key={i} position={[
             (Math.random() - 0.5) * 0.6,
             0.2 + Math.random() * 0.3,
             (Math.random() - 0.5) * 0.6
           ]}>
+            <sphereGeometry args={[0.05]} />
             <meshLambertMaterial color="#228B22" />
-          </Sphere>
+          </mesh>
         ))}
       </group>
     </Float>
@@ -78,18 +83,20 @@ const PineCone = ({ position }: { position: [number, number, number] }) => {
   return (
     <Float speed={3} rotationIntensity={0.8} floatIntensity={0.6}>
       <group ref={coneRef} position={position}>
-        <Cylinder args={[0.15, 0.25, 0.6, 6]} position={[0, 0, 0]}>
+        <mesh position={[0, 0, 0]}>
+          <cylinderGeometry args={[0.15, 0.25, 0.6, 6]} />
           <meshLambertMaterial color="#8B4513" />
-        </Cylinder>
+        </mesh>
         {/* Pine cone scales */}
         {[...Array(8)].map((_, i) => (
-          <Box key={i} args={[0.08, 0.08, 0.05]} position={[
+          <mesh key={i} position={[
             Math.sin(i * Math.PI / 4) * 0.2,
             (i - 4) * 0.08,
             Math.cos(i * Math.PI / 4) * 0.2
           ]}>
+            <boxGeometry args={[0.08, 0.08, 0.05]} />
             <meshLambertMaterial color="#654321" />
-          </Box>
+          </mesh>
         ))}
       </group>
     </Float>
@@ -110,29 +117,26 @@ const BerryJar = ({ position }: { position: [number, number, number] }) => {
     <Float speed={2.5} rotationIntensity={0.4} floatIntensity={0.7}>
       <group ref={jarRef} position={position}>
         {/* Glass Jar */}
-        <Cylinder args={[0.25, 0.3, 0.7, 8]} position={[0, 0, 0]}>
-          <meshPhysicalMaterial 
-            color="#E6E6FA" 
-            transparent 
-            opacity={0.3} 
-            roughness={0.1}
-            transmission={0.9}
-          />
-        </Cylinder>
+        <mesh position={[0, 0, 0]}>
+          <cylinderGeometry args={[0.25, 0.3, 0.7, 8]} />
+          <meshLambertMaterial color="#E6E6FA" transparent opacity={0.3} />
+        </mesh>
         {/* Berries inside */}
         {[...Array(12)].map((_, i) => (
-          <Sphere key={i} args={[0.03]} position={[
+          <mesh key={i} position={[
             (Math.random() - 0.5) * 0.4,
             (Math.random() - 0.5) * 0.5,
             (Math.random() - 0.5) * 0.4
           ]}>
+            <sphereGeometry args={[0.03]} />
             <meshLambertMaterial color={Math.random() > 0.5 ? "#DC143C" : "#4B0082"} />
-          </Sphere>
+          </mesh>
         ))}
         {/* Lid */}
-        <Cylinder args={[0.27, 0.27, 0.08, 8]} position={[0, 0.39, 0]}>
+        <mesh position={[0, 0.39, 0]}>
+          <cylinderGeometry args={[0.27, 0.27, 0.08, 8]} />
           <meshLambertMaterial color="#FFD700" />
-        </Cylinder>
+        </mesh>
       </group>
     </Float>
   );
