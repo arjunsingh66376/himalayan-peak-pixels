@@ -4,7 +4,7 @@ import { Float, OrbitControls, Environment } from '@react-three/drei';
 import HeroSection from '../components/HeroSection';
 import FloatingProducts from '../components/FloatingProducts';
 import ProductCatalog from '../components/ProductCatalog';
-import SustainabilitySection from '../components/SustainabilitySection';
+import LivelihoodSection from '../components/LivelihoodSection';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
 
@@ -44,8 +44,8 @@ const HomePage = () => {
       {/* Product Catalog */}
       <ProductCatalog />
 
-      {/* Sustainability Section */}
-      <SustainabilitySection />
+      {/* Livelihood Section */}
+      <LivelihoodSection />
 
       {/* Footer */}
       <Footer />

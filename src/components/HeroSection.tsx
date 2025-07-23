@@ -1,6 +1,6 @@
 import { Button } from './ui/button';
 import { ArrowRight, Leaf, Award, Truck } from 'lucide-react';
-import heroImage from '../assets/himalayan-hero.jpg';
+import heroImage from '../assets/uttarakhand-mountains.jpg';
 
 const HeroSection = () => {
   return (
@@ -17,14 +17,14 @@ const HeroSection = () => {
       <div className="relative z-10 container mx-auto px-4 text-center text-white">
         <div className="max-w-4xl mx-auto animate-fade-in-up">
           <h1 className="text-5xl md:text-7xl font-serif font-bold mb-6 leading-tight">
-            Pure Himalayan
+            Pure Uttarakhand
             <br />
             <span className="text-accent">Nature's Gifts</span>
           </h1>
           
           <p className="text-xl md:text-2xl mb-8 text-white/90 leading-relaxed">
             Discover premium herbs, organic honey, and wild forest treasures 
-            sourced sustainably from the pristine Himalayan highlands.
+            sourced sustainably from the pristine Uttarakhand mountains.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
