@@ -17,23 +17,23 @@ const Navigation = () => {
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-8">
-            <a href="#home" className="text-white/90 hover:text-white transition-colors">
+            <a href="#home" className="text-white/90 hover:text-goldenYellow transition-colors"> {/* Changed here */}
               Home
             </a>
-            <a href="#products" className="text-white/90 hover:text-white transition-colors">
+            <a href="#products" className="text-white/90 hover:text-goldenYellow transition-colors"> {/* Changed here */}
               Products
             </a>
-            <a href="#sustainability" className="text-white/90 hover:text-white transition-colors">
+            <a href="#sustainability" className="text-white/90 hover:text-goldenYellow transition-colors"> {/* Changed here */}
               Sustainability
             </a>
-            <a href="#about" className="text-white/90 hover:text-white transition-colors">
+            <a href="#about" className="text-white/90 hover:text-goldenYellow transition-colors"> {/* Changed here */}
               About
             </a>
-            <a href="#contact" className="text-white/90 hover:text-white transition-colors">
+            <a href="#contact" className="text-white/90 hover:text-goldenYellow transition-colors"> {/* Changed here */}
               Contact
             </a>
           </div>
-
+          
           {/* Action Buttons */}
           <div className="hidden md:flex items-center space-x-4">
             <Button variant="ghost" size="icon" className="text-white hover:bg-white/20">

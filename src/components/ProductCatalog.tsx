@@ -3,6 +3,14 @@ import { Button } from './ui/button';
 import { Card, CardContent, CardFooter } from './ui/card';
 import { Badge } from './ui/badge';
 import { Star, ShoppingCart, Heart } from 'lucide-react';
+//  images  import
+ import honey from '../assets/honey.jpg' 
+ import turmeric  from '../assets/turmeric.jpg' 
+ import pinecone  from '../assets/pinecone.jpg' 
+ import root from '../assets/root.jpg' 
+ import berry from '../assets/berry.jpg' 
+ import mirchi from '../assets/mirchi.jpg' 
+
 
 interface Product {
   id: number;
@@ -27,8 +35,8 @@ const products: Product[] = [
     originalPrice: 39.99,
     rating: 4.9,
     reviews: 324,
-    image: "🍯",
-    description: "Pure, raw honey harvested from wild mountain flowers at 3000m altitude.",
+    image:honey ,
+        description: "Pure, raw honey harvested from wild mountain flowers at 3000m altitude.",
     tags: ["Organic", "Raw", "Wildflower"],
     inStock: true
   },
@@ -39,7 +47,7 @@ const products: Product[] = [
     price: 19.99,
     rating: 4.8,
     reviews: 156,
-    image: "🌿",
+    image: turmeric,
     description: "High-curcumin turmeric from organic Himalayan farms, stone-ground fresh.",
     tags: ["Organic", "Anti-inflammatory", "Premium"],
     inStock: true
@@ -51,7 +59,7 @@ const products: Product[] = [
     price: 15.99,
     rating: 4.7,
     reviews: 89,
-    image: "🌰",
+    image: pinecone,
     description: "Naturally shed pine cones, perfect for crafts and natural decoration.",
     tags: ["Natural", "Eco-friendly", "Handpicked"],
     inStock: true
@@ -64,7 +72,7 @@ const products: Product[] = [
     originalPrice: 109.99,
     rating: 5.0,
     reviews: 45,
-    image: "🌱",
+    image: root,
     description: "Rare wild ginseng root, aged 7+ years, sustainably harvested.",
     tags: ["Premium", "Rare", "Energy Boost"],
     inStock: false
@@ -76,7 +84,7 @@ const products: Product[] = [
     price: 24.99,
     rating: 4.6,
     reviews: 203,
-    image: "🫐",
+    image: berry,
     description: "Dried mix of wild berries: juniper, sea buckthorn, and goji berries.",
     tags: ["Antioxidant", "Wild", "Superfood"],
     inStock: true
@@ -88,7 +96,7 @@ const products: Product[] = [
     price: 149.99,
     rating: 4.9,
     reviews: 78,
-    image: "🍄",
+    image: mirchi,
     description: "Premium cordyceps mushrooms from high-altitude Himalayan regions.",
     tags: ["Premium", "Adaptogen", "Energy"],
     inStock: true
@@ -150,28 +158,32 @@ const ProductCatalog = () => {
             >
               <CardContent className="p-0">
                 {/* Product Image */}
-                <div className="relative h-48 bg-gradient-mountain flex items-center justify-center text-6xl">
-                  {product.image}
-                  {product.originalPrice && (
-                    <Badge className="absolute top-4 left-4 bg-destructive text-destructive-foreground">
-                      Sale
-                    </Badge>
-                  )}
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    className="absolute top-4 right-4 bg-white/20 hover:bg-white/30"
-                    onClick={() => toggleFavorite(product.id)}
-                  >
-                    <Heart 
-                      className={`h-5 w-5 ${
-                        favorites.includes(product.id) 
-                          ? 'fill-destructive text-destructive' 
-                          : 'text-white'
-                      }`}
-                    />
-                  </Button>
-                </div>
+                <div className="relative h-48 bg-gradient-mountain flex items-center justify-center overflow-hidden"> {/* Added overflow-hidden for good measure */}
+  <img 
+    src={product.image} 
+    alt={product.name} 
+    className="w-full h-full object-cover" // Added object-cover to ensure the image fills the space
+  />
+  {product.originalPrice && (
+    <Badge className="absolute top-4 left-4 bg-destructive text-destructive-foreground">
+      Sale
+    </Badge>
+  )}
+  <Button
+    variant="ghost"
+    size="icon"
+    className="absolute top-4 right-4 bg-white/20 hover:bg-white/30"
+    onClick={() => toggleFavorite(product.id)}
+  >
+    <Heart 
+      className={`h-5 w-5 ${
+        favorites.includes(product.id) 
+          ? 'fill-destructive text-destructive' 
+          : 'text-white'
+      }`}
+    />
+  </Button>
+</div>
 
                 <div className="p-6">
                   {/* Product Info */}

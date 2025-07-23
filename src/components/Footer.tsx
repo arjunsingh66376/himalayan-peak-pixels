@@ -39,9 +39,7 @@ const Footer = () => {
               <Button variant="ghost" size="icon" className="hover:bg-primary-glow/20">
                 <Instagram className="h-5 w-5" />
               </Button>
-              <Button variant="ghost" size="icon" className="hover:bg-primary-glow/20">
-                <Twitter className="h-5 w-5" />
-              </Button>
+              
               <Button variant="ghost" size="icon" className="hover:bg-primary-glow/20">
                 <Youtube className="h-5 w-5" />
               </Button>
@@ -58,7 +56,7 @@ const Footer = () => {
                 "About Us",
                 "Blog",
                 "Contact",
-                "Track Order",
+              
                 "Wholesale",
                 "Careers"
               ].map((link) => (
@@ -81,8 +79,8 @@ const Footer = () => {
               {[
                 "FAQ",
                 "Shipping Info",
-                "Returns",
-                "Size Guide",
+               
+               
                 "Privacy Policy",
                 "Terms of Service",
                 "Refund Policy",
@@ -110,7 +108,7 @@ const Footer = () => {
               </div>
               <div className="flex items-center space-x-3">
                 <Phone className="h-5 w-5 text-accent" />
-                <span className="text-primary-foreground/80">+1 (555) 123-4567</span>
+                <span className="text-primary-foreground/80">+91  6398067533</span>
               </div>
               <div className="flex items-start space-x-3">
                 <MapPin className="h-5 w-5 text-accent mt-1" />

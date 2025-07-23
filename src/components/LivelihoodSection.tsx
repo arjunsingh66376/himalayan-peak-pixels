@@ -80,7 +80,7 @@ const LivelihoodSection = () => {
               <div className="text-white/80">Countries Served</div>
             </div>
             <div className="text-center">
-              <div className="text-4xl md:text-5xl font-bold text-accent mb-2">24-48h</div>
+              <div className="text-4xl md:text-5xl font-bold text-accent mb-2">2 days</div>
               <div className="text-white/80">Delivery Time</div>
             </div>
           </div>
@@ -99,12 +99,11 @@ const LivelihoodSection = () => {
                   Explore Bulk Orders
                 </Button>
                 <Button 
-                  variant="outline" 
-                  size="lg" 
-                  className="border-white/30 text-white hover:bg-white/10 text-lg px-8 py-4"
-                >
-                  Learn Our Impact
-                </Button>
+  size="lg"
+  className="bg-white text-black hover:bg-white/90 text-lg px-8 py-4"
+>
+  Know  Our  Story  
+</Button>
               </div>
             </div>
           </div>
