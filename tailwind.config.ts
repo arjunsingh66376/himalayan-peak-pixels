@@ -127,6 +127,12 @@ export default {
 				'pulse-glow': {
 					'0%, 100%': { boxShadow: '0 0 20px hsla(var(--accent), 0.3)' },
 					'50%': { boxShadow: '0 0 40px hsla(var(--accent), 0.6)' }
+				},
+				'snowfall': {
+					'0%': { transform: 'translateY(-100vh) rotate(0deg)', opacity: '0' },
+					'10%': { opacity: '1' },
+					'90%': { opacity: '1' },
+					'100%': { transform: 'translateY(100vh) rotate(360deg)', opacity: '0' }
 				}
 			},
 			animation: {
@@ -138,7 +144,8 @@ export default {
 				'fade-in-up': 'fade-in-up 0.8s ease-out',
 				'slide-in-right': 'slide-in-right 0.8s ease-out',
 				'shimmer': 'shimmer 2s linear infinite',
-				'pulse-glow': 'pulse-glow 2s ease-in-out infinite'
+				'pulse-glow': 'pulse-glow 2s ease-in-out infinite',
+				'snowfall': 'snowfall linear infinite'
 			}
 		}
 	},

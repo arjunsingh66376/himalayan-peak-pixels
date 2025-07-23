@@ -2,6 +2,21 @@ import { Button } from './ui/button';
 import { ArrowRight, Leaf, Award, Truck } from 'lucide-react';
 import heroImage from '../assets/uttarakhand-mountains.jpg';
 
+// Snowflake component
+const Snowflake = ({ delay, size, duration }: { delay: number; size: number; duration: number }) => (
+  <div
+    className="absolute text-white/60 pointer-events-none select-none"
+    style={{
+      left: `${Math.random() * 100}%`,
+      animationDelay: `${delay}s`,
+      fontSize: `${size}px`,
+      animationDuration: `${duration}s`,
+    }}
+  >
+    ❄
+  </div>
+);
+
 const HeroSection = () => {
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center pt-20">
@@ -13,6 +28,24 @@ const HeroSection = () => {
         }}
       />
       
+      {/* Snowfall Animation */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none z-5">
+        {Array.from({ length: 50 }, (_, i) => (
+          <div
+            key={i}
+            className="absolute animate-[snowfall_linear_infinite] text-white/40"
+            style={{
+              left: `${Math.random() * 100}%`,
+              animationDuration: `${3 + Math.random() * 5}s`,
+              animationDelay: `${Math.random() * 5}s`,
+              fontSize: `${8 + Math.random() * 12}px`,
+            }}
+          >
+            ❄
+          </div>
+        ))}
+      </div>
+
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 text-center text-white">
         <div className="max-w-4xl mx-auto animate-fade-in-up">
