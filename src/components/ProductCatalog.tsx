@@ -3,13 +3,16 @@ import { Button } from './ui/button';
 import { Card, CardContent, CardFooter } from './ui/card';
 import { Badge } from './ui/badge';
 import { Star, ShoppingCart, Heart } from 'lucide-react';
-//  images  import
- import honey from '../assets/honey.jpg' 
- import turmeric  from '../assets/turmeric.jpg' 
- import pinecone  from '../assets/pinecone.jpg' 
- import root from '../assets/root.jpg' 
- import berry from '../assets/berry.jpg' 
- import mirchi from '../assets/mirchi.jpg' 
+// Import useNavigate for navigation
+import { useNavigate } from 'react-router-dom'; //
+
+//  images  import
+import honey from '../assets/honey.jpg' 
+import turmeric from '../assets/turmeric.jpg' 
+import pinecone from '../assets/pinecone.jpg' 
+import root from '../assets/root.jpg' 
+import berry from '../assets/berry.jpg' 
+import mirchi from '../assets/mirchi.jpg' 
 
 
 interface Product {
@@ -108,6 +111,7 @@ const categories = ["All", "Honey", "Herbs", "Forest Products", "Berries", "Mush
 const ProductCatalog = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [favorites, setFavorites] = useState<number[]>([]);
+  const navigate = useNavigate(); // // Initialize useNavigate hook
 
   const filteredProducts = selectedCategory === "All" 
     ? products 
@@ -119,6 +123,11 @@ const ProductCatalog = () => {
         ? prev.filter(id => id !== productId)
         : [...prev, productId]
     );
+  };
+
+  // Handler for "View All Products" button click
+  const handleViewAllProducts = () => {
+    navigate('/products'); // // Navigate to the Products page
   };
 
   return (
@@ -158,32 +167,32 @@ const ProductCatalog = () => {
             >
               <CardContent className="p-0">
                 {/* Product Image */}
-                <div className="relative h-48 bg-gradient-mountain flex items-center justify-center overflow-hidden"> {/* Added overflow-hidden for good measure */}
-  <img 
-    src={product.image} 
-    alt={product.name} 
-    className="w-full h-full object-cover" // Added object-cover to ensure the image fills the space
-  />
-  {product.originalPrice && (
-    <Badge className="absolute top-4 left-4 bg-destructive text-destructive-foreground">
-      Sale
-    </Badge>
-  )}
-  <Button
-    variant="ghost"
-    size="icon"
-    className="absolute top-4 right-4 bg-white/20 hover:bg-white/30"
-    onClick={() => toggleFavorite(product.id)}
-  >
-    <Heart 
-      className={`h-5 w-5 ${
-        favorites.includes(product.id) 
-          ? 'fill-destructive text-destructive' 
-          : 'text-white'
-      }`}
-    />
-  </Button>
-</div>
+                <div className="relative h-48 bg-gradient-mountain flex items-center justify-center overflow-hidden">
+                  <img 
+                    src={product.image} 
+                    alt={product.name} 
+                    className="w-full h-full object-cover" 
+                  />
+                  {product.originalPrice && (
+                    <Badge className="absolute top-4 left-4 bg-destructive text-destructive-foreground">
+                      Sale
+                    </Badge>
+                  )}
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className="absolute top-4 right-4 bg-white/20 hover:bg-white/30"
+                    onClick={() => toggleFavorite(product.id)}
+                  >
+                    <Heart 
+                      className={`h-5 w-5 ${
+                        favorites.includes(product.id) 
+                          ? 'fill-destructive text-destructive' 
+                          : 'text-white'
+                      }`}
+                    />
+                  </Button>
+                </div>
 
                 <div className="p-6">
                   {/* Product Info */}
@@ -260,7 +269,12 @@ const ProductCatalog = () => {
 
         {/* View All Button */}
         <div className="text-center mt-12">
-          <Button size="lg" variant="outline" className="px-8 py-4 hover-lift">
+          <Button 
+            size="lg" 
+            variant="outline" 
+            className="px-8 py-4 hover-lift"
+            onClick={handleViewAllProducts} // // Add onClick handler
+          >
             View All Products
           </Button>
         </div>
