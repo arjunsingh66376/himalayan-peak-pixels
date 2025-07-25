@@ -33,7 +33,7 @@ const Navigation = () => {
             </Link>
 
             {/* For other sections, if they are still within the HomePage or part of a multi-section page */}
-            <a href="/#bulk order" className="text-white/90 hover:text-goldenYellow transition-colors">
+            <a href="/bulk_order" className="text-white/90 hover:text-goldenYellow transition-colors">
               Bulk Order
             </a>
             <a href="/about" className="text-white/90 hover:text-goldenYellow transition-colors">

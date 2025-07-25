@@ -8,6 +8,7 @@ import ProductsPage from "./pages/Productspage";
 import NotFound from "./pages/NotFound";
 import About from "./pages/AboutPage";
 import Contact from "./pages/ContactUsPage";
+import BulkOrderPage from "./pages/BulkOrder";
 
 const queryClient = new QueryClient();
 import ScrollToTop from "./components/ScrollToTop";
@@ -24,6 +25,7 @@ const App = () => (
           <Route path="/products" element={<ProductsPage />} />
           <Route path="/About" element={<About/>} ></Route>
           <Route path="/contact" element={<Contact/>} ></Route>
+          <Route path="/bulk_order" element={<BulkOrderPage/>}></Route>
         
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />

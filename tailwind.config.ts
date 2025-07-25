@@ -98,7 +98,9 @@ export default {
 				'gradient-aurora': 'var(--gradient-aurora)',
 				'gradient-glass': 'var(--gradient-glass)',
 				'gradient-hero': 'var(--gradient-hero)',
-'product-section': 'linear-gradient(135deg, #FFFFFF 0%, #87CEFA 50%, #FFFFFF 100%)',			},
+'product-section': 'linear-gradient(135deg, #FFFFFF 0%, #87CEFA 50%, #FFFFFF 100%)',
+'bulk-product-bg':'url(../../src/assets/plantbg.jpg)'
+		},
 			fontFamily: {
 				'serif': ['Playfair Display', 'Georgia', 'serif'],
 				'sans': ['Inter', '-apple-system', 'BlinkMacSystemFont', 'system-ui', 'sans-serif']
