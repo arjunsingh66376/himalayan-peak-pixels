@@ -39,7 +39,7 @@ const Navigation = () => {
             <a href="/about" className="text-white/90 hover:text-goldenYellow transition-colors">
               About
             </a>
-            <a href="/#contact" className="text-white/90 hover:text-goldenYellow transition-colors">
+            <a href="/contact" className="text-white/90 hover:text-goldenYellow transition-colors">
               Contact
             </a>
           </div>
