@@ -62,6 +62,9 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
+
+
+				
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
 					foreground: 'hsl(var(--sidebar-foreground))',
@@ -73,6 +76,8 @@ export default {
 					ring: 'hsl(var(--sidebar-ring))'
 				},
 				goldenYellow: '#F7D56E',
+				
+				
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -92,8 +97,8 @@ export default {
 				'gradient-mountain': 'var(--gradient-mountain)',
 				'gradient-aurora': 'var(--gradient-aurora)',
 				'gradient-glass': 'var(--gradient-glass)',
-				'gradient-hero': 'var(--gradient-hero)'
-			},
+				'gradient-hero': 'var(--gradient-hero)',
+'product-section': 'linear-gradient(135deg, #FFFFFF 0%, #87CEFA 50%, #FFFFFF 100%)',			},
 			fontFamily: {
 				'serif': ['Playfair Display', 'Georgia', 'serif'],
 				'sans': ['Inter', '-apple-system', 'BlinkMacSystemFont', 'system-ui', 'sans-serif']
@@ -136,6 +141,8 @@ export default {
 					'100%': { transform: 'translateY(100vh) rotate(360deg)', opacity: '0' }
 				}
 			},
+
+			
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',

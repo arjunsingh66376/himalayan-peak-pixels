@@ -1,139 +1,74 @@
 import { useState } from 'react';
 import { Button } from './ui/button';
-import { Card, CardContent, CardFooter } from './ui/card';
-import { Badge } from './ui/badge';
-import { Star, ShoppingCart, Heart } from 'lucide-react';
-// Import useNavigate for navigation
-import { useNavigate } from 'react-router-dom'; //
+import { Card, CardContent } from './ui/card';
+import { useNavigate } from 'react-router-dom';
 
-//  images  import
-import honey from '../assets/honey.jpg' 
-import turmeric from '../assets/turmeric.jpg' 
-import pinecone from '../assets/pinecone.jpg' 
-import root from '../assets/root.jpg' 
-import berry from '../assets/berry.jpg' 
-import mirchi from '../assets/mirchi.jpg' 
+// Image imports (edit these paths as per your project)
+import honey from '../assets/honey.jpg';
+import turmeric from '../assets/turmeric.jpg';
+import pinecone from '../assets/pinecone.jpg';
+import root from '../assets/root.jpg';
+import berry from '../assets/berry.jpg';
+import mirchi from '../assets/mirchi.jpg';
 
-
-interface Product {
-  id: number;
-  name: string;
-  category: string;
-  price: number;
-  originalPrice?: number;
-  rating: number;
-  reviews: number;
-  image: string;
-  description: string;
-  tags: string[];
-  inStock: boolean;
-}
-
-const products: Product[] = [
+const products = [
   {
     id: 1,
     name: "Wild Himalayan Honey",
     category: "Honey",
-    price: 29.99,
-    originalPrice: 39.99,
-    rating: 4.9,
-    reviews: 324,
-    image:honey ,
-        description: "Pure, raw honey harvested from wild mountain flowers at 3000m altitude.",
-    tags: ["Organic", "Raw", "Wildflower"],
-    inStock: true
+    image: honey,
   },
   {
     id: 2,
     name: "Premium Turmeric Powder",
     category: "Herbs",
-    price: 19.99,
-    rating: 4.8,
-    reviews: 156,
     image: turmeric,
-    description: "High-curcumin turmeric from organic Himalayan farms, stone-ground fresh.",
-    tags: ["Organic", "Anti-inflammatory", "Premium"],
-    inStock: true
   },
   {
     id: 3,
     name: "Himalayan Pine Cones",
     category: "Forest Products",
-    price: 15.99,
-    rating: 4.7,
-    reviews: 89,
     image: pinecone,
-    description: "Naturally shed pine cones, perfect for crafts and natural decoration.",
-    tags: ["Natural", "Eco-friendly", "Handpicked"],
-    inStock: true
   },
   {
     id: 4,
     name: "Wild Ginseng Root",
     category: "Herbs",
-    price: 89.99,
-    originalPrice: 109.99,
-    rating: 5.0,
-    reviews: 45,
     image: root,
-    description: "Rare wild ginseng root, aged 7+ years, sustainably harvested.",
-    tags: ["Premium", "Rare", "Energy Boost"],
-    inStock: false
   },
   {
     id: 5,
     name: "Mountain Berry Mix",
     category: "Berries",
-    price: 24.99,
-    rating: 4.6,
-    reviews: 203,
     image: berry,
-    description: "Dried mix of wild berries: juniper, sea buckthorn, and goji berries.",
-    tags: ["Antioxidant", "Wild", "Superfood"],
-    inStock: true
   },
   {
     id: 6,
     name: "Sacred Cordyceps",
     category: "Mushrooms",
-    price: 149.99,
-    rating: 4.9,
-    reviews: 78,
     image: mirchi,
-    description: "Premium cordyceps mushrooms from high-altitude Himalayan regions.",
-    tags: ["Premium", "Adaptogen", "Energy"],
-    inStock: true
-  }
+  },
 ];
 
 const categories = ["All", "Honey", "Herbs", "Forest Products", "Berries", "Mushrooms"];
 
 const ProductCatalog = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
-  const [favorites, setFavorites] = useState<number[]>([]);
-  const navigate = useNavigate(); // // Initialize useNavigate hook
+  const navigate = useNavigate();
 
-  const filteredProducts = selectedCategory === "All" 
-    ? products 
-    : products.filter(product => product.category === selectedCategory);
+  const filteredProducts =
+    selectedCategory === "All"
+      ? products
+      : products.filter((product) => product.category === selectedCategory);
 
-  const toggleFavorite = (productId: number) => {
-    setFavorites(prev => 
-      prev.includes(productId)
-        ? prev.filter(id => id !== productId)
-        : [...prev, productId]
-    );
-  };
-
-  // Handler for "View All Products" button click
   const handleViewAllProducts = () => {
-    navigate('/products'); // // Navigate to the Products page
+    navigate('/products');
   };
 
   return (
-    <section id="products" className="py-20 bg-background">
+    <section id="products" className="py-20 bg-product-section">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16 animate-fade-in-up">
+        <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-serif font-bold text-foreground mb-6">
             Premium Collection
           </h2>
@@ -150,130 +85,54 @@ const ProductCatalog = () => {
               key={category}
               variant={selectedCategory === category ? "default" : "outline"}
               onClick={() => setSelectedCategory(category)}
-              className="px-6 py-2 rounded-full hover-lift"
+              className="px-6 py-2 rounded-full"
             >
               {category}
             </Button>
           ))}
         </div>
 
-        {/* Products Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* Products Grid — animated floating cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 justify-items-center">
           {filteredProducts.map((product, index) => (
-            <Card 
-              key={product.id} 
-              className="group hover-lift hover-glow glass-card border-border/50 overflow-hidden"
-              style={{ animationDelay: `${index * 0.1}s` }}
+            <Card
+              key={product.id}
+              // 'animate-float' comes from your tailwind.config.ts!
+              className={`animate-float flex flex-col rounded-2xl bg-white/90 w-[320px] h-[410px] mx-auto p-0 shadow-2xl shadow-gray-400/30`}
+              style={{ animationDelay: `${index * 0.7}s` }}
             >
-              <CardContent className="p-0">
-                {/* Product Image */}
-                <div className="relative h-48 bg-gradient-mountain flex items-center justify-center overflow-hidden">
-                  <img 
-                    src={product.image} 
-                    alt={product.name} 
-                    className="w-full h-full object-cover" 
-                  />
-                  {product.originalPrice && (
-                    <Badge className="absolute top-4 left-4 bg-destructive text-destructive-foreground">
-                      Sale
-                    </Badge>
-                  )}
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    className="absolute top-4 right-4 bg-white/20 hover:bg-white/30"
-                    onClick={() => toggleFavorite(product.id)}
-                  >
-                    <Heart 
-                      className={`h-5 w-5 ${
-                        favorites.includes(product.id) 
-                          ? 'fill-destructive text-destructive' 
-                          : 'text-white'
-                      }`}
+              <div className="relative flex flex-col items-center h-full w-full">
+                {/* Optional: Blurred floating "halo" shadow */}
+                <div className="absolute left-1/2 -translate-x-1/2 top-[92%] w-[75%] h-6 bg-blue-200 opacity-25 blur-xl rounded-full z-0 pointer-events-none" />
+                <CardContent className="flex flex-col h-full items-center justify-between p-0 w-full relative z-10">
+                  <div className="w-full h-[330px] overflow-hidden rounded-t-2xl">
+                    <img
+                      src={product.image}
+                      alt={product.name}
+                      className="w-full h-full object-cover"
                     />
-                  </Button>
-                </div>
-
-                <div className="p-6">
-                  {/* Product Info */}
-                  <div className="mb-4">
-                    <h3 className="text-xl font-semibold text-card-foreground mb-2 group-hover:text-primary transition-colors">
+                  </div>
+                  <div className="w-full px-6 pb-4 text-center flex flex-col items-center justify-center h-[80px]">
+                    <h3 className="font-serif text-lg font-semibold text-gray-900 mb-1 truncate w-full">
                       {product.name}
                     </h3>
-                    <p className="text-muted-foreground text-sm mb-3">
-                      {product.description}
+                    <p className="text-gray-500 text-sm tracking-wide">
+                      Abstract decoration
                     </p>
-                    
-                    {/* Tags */}
-                    <div className="flex flex-wrap gap-2 mb-3">
-                      {product.tags.map((tag) => (
-                        <Badge key={tag} variant="secondary" className="text-xs">
-                          {tag}
-                        </Badge>
-                      ))}
-                    </div>
-
-                    {/* Rating */}
-                    <div className="flex items-center gap-2 mb-4">
-                      <div className="flex items-center">
-                        {[...Array(5)].map((_, i) => (
-                          <Star
-                            key={i}
-                            className={`h-4 w-4 ${
-                              i < Math.floor(product.rating)
-                                ? 'text-accent fill-accent'
-                                : 'text-muted-foreground'
-                            }`}
-                          />
-                        ))}
-                      </div>
-                      <span className="text-sm text-muted-foreground">
-                        {product.rating} ({product.reviews} reviews)
-                      </span>
-                    </div>
-
-                    {/* Price */}
-                    <div className="flex items-center gap-2 mb-4">
-                      <span className="text-2xl font-bold text-primary">
-                        ${product.price}
-                      </span>
-                      {product.originalPrice && (
-                        <span className="text-lg text-muted-foreground line-through">
-                          ${product.originalPrice}
-                        </span>
-                      )}
-                    </div>
                   </div>
-                </div>
-              </CardContent>
-
-              <CardFooter className="p-6 pt-0">
-                <Button 
-                  className="w-full group" 
-                  disabled={!product.inStock}
-                  variant={product.inStock ? "default" : "secondary"}
-                >
-                  {product.inStock ? (
-                    <>
-                      <ShoppingCart className="h-4 w-4 mr-2 group-hover:scale-110 transition-transform" />
-                      Add to Cart
-                    </>
-                  ) : (
-                    "Out of Stock"
-                  )}
-                </Button>
-              </CardFooter>
+                </CardContent>
+              </div>
             </Card>
           ))}
         </div>
 
         {/* View All Button */}
         <div className="text-center mt-12">
-          <Button 
-            size="lg" 
-            variant="outline" 
-            className="px-8 py-4 hover-lift"
-            onClick={handleViewAllProducts} // // Add onClick handler
+          <Button
+            size="lg"
+            variant="outline"
+            className="px-8 py-4"
+            onClick={handleViewAllProducts}
           >
             View All Products
           </Button>
