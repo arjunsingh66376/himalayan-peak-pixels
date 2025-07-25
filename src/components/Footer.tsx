@@ -52,7 +52,7 @@ const Footer = () => {
             <ul className="space-y-2">
               {[
                 "Our Products",
-                "Sustainability",
+                
                 "About Us",
                 "Blog",
                 "Contact",
@@ -83,7 +83,7 @@ const Footer = () => {
                
                 "Privacy Policy",
                 "Terms of Service",
-                "Refund Policy",
+                
                 "Support"
               ].map((link) => (
                 <li key={link}>

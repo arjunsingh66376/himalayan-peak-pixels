@@ -6,8 +6,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import ProductsPage from "./pages/Productspage";
 import NotFound from "./pages/NotFound";
-import About from "./pages/Aboutpage";
-import naturevideo from "./assets/video.mp4"
+import About from "./pages/AboutPage";
+
 const queryClient = new QueryClient();
 import ScrollToTop from "./components/ScrollToTop";
 
@@ -21,7 +21,7 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/products" element={<ProductsPage />} />
-          <Route path="/about"></Route>
+          <Route path="/About" element={<About/>} ></Route>
         
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
