@@ -6,12 +6,12 @@ import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
 import { Star, ShoppingCart, Heart, Search } from 'lucide-react';
-import honey from '../assets/honey.jpg';
+import honey from '../assets/honeyfront.jpg';
 import turmeric from '../assets/turmeric.jpg';
 import pinecone from '../assets/pinecone.jpg';
 import root from '../assets/root.jpg';
 import berry from '../assets/berry.jpg';
-import mirchi from '../assets/mirchi.jpg';
+import mushroom from '../assets/mushroom.jpg';
 import tropicalFrameBg from '../assets/tropical.jpg';
 import greenLeavesBg from '../assets/productsbg.jpg';
 import { Link } from "react-router-dom";
@@ -100,7 +100,7 @@ const products: Product[] = [
     price: 149.99,
     rating: 4.9,
     reviews: 78,
-    image: mirchi,
+    image: mushroom,
     description: "Premium cordyceps mushrooms from high-altitude Himalayan regions.",
     tags: ["Premium", "Adaptogen", "Energy"],
     inStock: true

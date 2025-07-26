@@ -4,12 +4,12 @@ import { Card, CardContent } from './ui/card';
 import { useNavigate } from 'react-router-dom';
 
 // Image imports (edit these paths as per your project)
-import honey from '../assets/honey.jpg';
+import honey from '../assets/honeyfront.jpg';
 import turmeric from '../assets/turmeric.jpg';
 import pinecone from '../assets/pinecone.jpg';
 import root from '../assets/root.jpg';
 import berry from '../assets/berry.jpg';
-import mirchi from '../assets/mirchi.jpg';
+import mushroom from '../assets/mushroom.jpg';
 
 const products = [
   {
@@ -46,7 +46,7 @@ const products = [
     id: 6,
     name: "Sacred Cordyceps",
     category: "Mushrooms",
-    image: mirchi,
+    image: mushroom,
   },
 ];
 
