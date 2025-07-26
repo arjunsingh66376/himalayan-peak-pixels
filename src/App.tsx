@@ -9,6 +9,7 @@ import NotFound from "./pages/NotFound";
 import About from "./pages/AboutPage";
 import Contact from "./pages/ContactUsPage";
 import BulkOrderPage from "./pages/BulkOrder";
+import ProductCarouselPage from "./pages/ProductCarouselPage";
 
 const queryClient = new QueryClient();
 import ScrollToTop from "./components/ScrollToTop";
@@ -23,9 +24,11 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/products" element={<ProductsPage />} />
-          <Route path="/About" element={<About/>} ></Route>
-          <Route path="/contact" element={<Contact/>} ></Route>
-          <Route path="/bulk_order" element={<BulkOrderPage/>}></Route>
+          <Route path="/About" element={<About/>} />
+          <Route path="/contact" element={<Contact/>} />
+          <Route path="/bulk_order" element={<BulkOrderPage/>}/>
+          <Route path="/product/:id" element={<ProductCarouselPage />} />
+          
         
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />

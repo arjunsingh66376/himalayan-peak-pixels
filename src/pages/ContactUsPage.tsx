@@ -1,6 +1,7 @@
 import React from "react";
 import bgImage from "../../src/assets/Contactusbg.jpg";
 import Navigation from "../components/Navigation";
+import Footer from "@/components/Footer";
 
 const NAV_HEIGHT = 64; // px (adjust to your nav's actual height)
 
@@ -89,6 +90,7 @@ const Contact = () => (
         </form>
       </div>
     </section>
+    <Footer/>
   </div>
 );
 

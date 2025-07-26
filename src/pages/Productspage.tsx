@@ -14,6 +14,7 @@ import berry from '../assets/berry.jpg';
 import mirchi from '../assets/mirchi.jpg';
 import tropicalFrameBg from '../assets/tropical.jpg';
 import greenLeavesBg from '../assets/productsbg.jpg';
+import { Link } from "react-router-dom";
 
 interface Product {
   id: number;
@@ -207,6 +208,7 @@ const ProductsPage = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
             {filteredProducts.map((product, index) => (
+              <Link to={`/product/${product.id}`} className="block h-full">
               <Card 
                 key={product.id} 
                 className="group hover-lift hover-glow glass-card border-border/50 overflow-hidden relative animate-fade-in bg-white/90 backdrop-blur-sm"
@@ -331,6 +333,7 @@ const ProductsPage = () => {
                   </Button>
                 </CardFooter>
               </Card>
+              </Link>
             ))}
           </div>
 
