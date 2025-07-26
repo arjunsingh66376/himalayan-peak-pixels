@@ -2,12 +2,14 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowLeft, ArrowRight, Heart, ShoppingCart } from "lucide-react";
-import products from "../../src/dataset/data"; // adjust this path as needed
+import products from "../../src/dataset/data"; // Adjust path as needed
 import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
 import { Button } from "../components/ui/button";
 import { Badge } from "../components/ui/badge";
-import productdetailbg from "../assets/productdetailbg.jpg"; // adjust path as needed
+import productdetailbg from "../assets/productdetailbg.jpg"; // Adjust as needed
+
+const NAVBAR_HEIGHT = 80; // Change to your actual navbar's height in pixels!
 
 function ProductCarouselPage() {
   const { id } = useParams();
@@ -53,7 +55,7 @@ function ProductCarouselPage() {
 
   return (
     <div
-      className="min-h-screen flex flex-col relative"
+      className="min-h-screen flex flex-col relative "
       style={{
         backgroundImage: `url(${productdetailbg})`,
         backgroundSize: "cover",
@@ -61,13 +63,15 @@ function ProductCarouselPage() {
       }}
     >
       <Navigation />
+      {/* ABSOLUTELY GUARANTEE CARD STARTS BELOW NAVBAR */}
+      <div style={{ height: NAVBAR_HEIGHT }} />
 
-      {/* Adjust the top padding (pt-[88px]) to your navbar's actual height in px */}
-      <main className="flex-1 flex flex-col items-center relative z-0 pt-[88px] pb-16 px-4" style={{ minHeight: 0 }}>
+      <main className="flex-1 flex flex-col items-center relative z-0 pb-16 px-4" style={{ minHeight: 0 }}>
         <div className="absolute inset-0 bg-gradient-to-bl from-emerald-900/60 via-green-900/40 to-yellow-100/20 backdrop-blur-sm -z-10" />
 
         <div className="w-full flex flex-col items-center flex-1">
           <div className="relative w-full flex justify-center items-center">
+
             {totalImages > 1 && (
               <>
                 <div className="absolute left-2 top-1/2 -translate-y-1/2 z-20">
@@ -97,38 +101,40 @@ function ProductCarouselPage() {
                 max-w-4xl w-full mx-auto rounded-3xl shadow-2xl bg-black/60
                 backdrop-blur-lg border-2 border-green-700 ring-4 ring-green-500/40
                 flex flex-col md:flex-row overflow-hidden relative z-10
-                max-h-[80vh] overflow-y-auto
+                max-h-[80vh] min-h-[500px] overflow-y-auto
               ">
-              {/* Animated Image Carousel */}
+              {/* --- FIXED IMAGE CONTAINER --- */}
               <div className="md:w-1/2 p-8 flex items-center justify-center relative min-h-[18rem]">
-                <AnimatePresence initial={false} custom={direction}>
-                  <motion.img
-                    key={imageIndex}
-                    src={images[imageIndex]}
-                    alt={`${product.name} view ${imageIndex + 1}`}
-                    initial={{ opacity: 0, x: direction > 0 ? 120 : -120 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: direction > 0 ? -120 : 120 }}
-                    transition={{ duration: 0.5 }}
-                    className="rounded-2xl shadow-xl object-contain h-72 w-full"
-                    style={{ willChange: "transform" }}
-                  />
-                </AnimatePresence>
-                <Button
-                  onClick={() => toggleFavorite(product.id)}
-                  size="icon"
-                  variant="ghost"
-                  className="absolute top-2 right-2 bg-white/80"
-                  aria-label="Toggle Favorite"
-                >
-                  <Heart
-                    className={`h-6 w-6 transition-all ${
-                      favorites.includes(product.id)
-                        ? "fill-red-500 text-red-500"
-                        : "text-green-900"
-                    }`}
-                  />
-                </Button>
+                <div className="w-[320px] h-[320px] flex items-center justify-center relative">
+                  <AnimatePresence initial={false} custom={direction}>
+                    <motion.img
+                      key={imageIndex}
+                      src={images[imageIndex]}
+                      alt={`${product.name} view ${imageIndex + 1}`}
+                      initial={{ opacity: 0, x: direction > 0 ? 120 : -120 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: direction > 0 ? -120 : 120 }}
+                      transition={{ duration: 0.5 }}
+                      className="object-contain w-full h-full rounded-2xl shadow-xl"
+                      style={{ willChange: "transform" }}
+                    />
+                  </AnimatePresence>
+                  <Button
+                    onClick={() => toggleFavorite(product.id)}
+                    size="icon"
+                    variant="ghost"
+                    className="absolute top-2 right-2 bg-white/80"
+                    aria-label="Toggle Favorite"
+                  >
+                    <Heart
+                      className={`h-6 w-6 transition-all ${
+                        favorites.includes(product.id)
+                          ? "fill-red-500 text-red-500"
+                          : "text-green-900"
+                      }`}
+                    />
+                  </Button>
+                </div>
               </div>
 
               {/* Product Details */}
@@ -190,7 +196,7 @@ function ProductCarouselPage() {
             </div>
           </div>
           {/* Back button */}
-          <div className="mt-8 z-10 relative">
+          <div className="mt-8 z-10 relative mb-10">
             <Button variant="outline" onClick={() => navigate("/")}>
               ← Back to Products
             </Button>
