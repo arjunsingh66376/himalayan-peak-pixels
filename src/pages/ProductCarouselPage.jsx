@@ -2,14 +2,14 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowLeft, ArrowRight, Heart, ShoppingCart } from "lucide-react";
-import products from "../../src/dataset/data"; // Adjust path as needed
+import products from "../../src/dataset/data"; // Adjust as needed
 import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
 import { Button } from "../components/ui/button";
 import { Badge } from "../components/ui/badge";
 import productdetailbg from "../assets/productdetailbg.jpg"; // Adjust as needed
 
-const NAVBAR_HEIGHT = 80; // Change to your actual navbar's height in pixels!
+const NAVBAR_HEIGHT = 80; // Adjust if your Navbar height is different
 
 function ProductCarouselPage() {
   const { id } = useParams();
@@ -55,7 +55,7 @@ function ProductCarouselPage() {
 
   return (
     <div
-      className="min-h-screen flex flex-col relative "
+      className="min-h-screen flex flex-col relative"
       style={{
         backgroundImage: `url(${productdetailbg})`,
         backgroundSize: "cover",
@@ -63,15 +63,25 @@ function ProductCarouselPage() {
       }}
     >
       <Navigation />
-      {/* ABSOLUTELY GUARANTEE CARD STARTS BELOW NAVBAR */}
       <div style={{ height: NAVBAR_HEIGHT }} />
 
-      <main className="flex-1 flex flex-col items-center relative z-0 pb-16 px-4" style={{ minHeight: 0 }}>
+      {/* LOCK the total vertical height available for the page content! */}
+      <main
+        className="flex-1 flex flex-col items-center justify-center relative z-0 pb-16 px-4"
+        style={{
+          minHeight: 0,
+          height: `calc(100vh - ${NAVBAR_HEIGHT}px - 64px)`  // subtract nav and some footer mb
+        }}
+      >
         <div className="absolute inset-0 bg-gradient-to-bl from-emerald-900/60 via-green-900/40 to-yellow-100/20 backdrop-blur-sm -z-10" />
 
-        <div className="w-full flex flex-col items-center flex-1">
-          <div className="relative w-full flex justify-center items-center">
-
+        {/* OUTER FLEX PARENT — LOCK HEIGHT TO PREVENT UP/JUMP */}
+        <div
+          className="w-full flex flex-col items-center justify-center flex-1"
+          style={{ height: 580 }}
+        >
+          <div className="relative w-full flex justify-center items-center" style={{ height: 550 }}>
+            {/* Arrows */}
             {totalImages > 1 && (
               <>
                 <div className="absolute left-2 top-1/2 -translate-y-1/2 z-20">
@@ -101,9 +111,9 @@ function ProductCarouselPage() {
                 max-w-4xl w-full mx-auto rounded-3xl shadow-2xl bg-black/60
                 backdrop-blur-lg border-2 border-green-700 ring-4 ring-green-500/40
                 flex flex-col md:flex-row overflow-hidden relative z-10
-                max-h-[80vh] min-h-[500px] overflow-y-auto
-              ">
-              {/* --- FIXED IMAGE CONTAINER --- */}
+                h-[520px] min-h-[520px] max-h-[520px]
+            ">
+              {/* --- IMAGE CONTAINER --- */}
               <div className="md:w-1/2 p-8 flex items-center justify-center relative min-h-[18rem]">
                 <div className="w-[320px] h-[320px] flex items-center justify-center relative">
                   <AnimatePresence initial={false} custom={direction}>
@@ -137,9 +147,9 @@ function ProductCarouselPage() {
                 </div>
               </div>
 
-              {/* Product Details */}
-              <div className="md:w-1/2 p-8 flex flex-col justify-between gap-6 text-white">
-                <div>
+              {/* --- PRODUCT DETAILS --- */}
+              <div className="md:w-1/2 p-8 flex flex-col justify-between gap-6 text-white overflow-hidden">
+                <div className="flex-1 overflow-auto">
                   <h2 className="text-3xl font-serif font-bold mb-2 drop-shadow">
                     {product.name}
                   </h2>
@@ -195,6 +205,7 @@ function ProductCarouselPage() {
               </div>
             </div>
           </div>
+
           {/* Back button */}
           <div className="mt-8 z-10 relative mb-10">
             <Button variant="outline" onClick={() => navigate("/")}>
