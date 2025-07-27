@@ -2,14 +2,14 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowLeft, ArrowRight, Heart, ShoppingCart } from "lucide-react";
-import products from "../../src/dataset/data"; // Adjust as needed
+import products from "../../src/dataset/data"; // Adjust path as needed
 import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
 import { Button } from "../components/ui/button";
 import { Badge } from "../components/ui/badge";
-import productdetailbg from "../assets/productdetailbg.jpg"; // Adjust as needed
+import productdetailbg from "../assets/productdetailbg.jpg"; // Adjust path as needed
 
-const NAVBAR_HEIGHT = 80; // Adjust if your Navbar height is different
+const NAVBAR_HEIGHT = 80;
 
 function ProductCarouselPage() {
   const { id } = useParams();
@@ -65,23 +65,20 @@ function ProductCarouselPage() {
       <Navigation />
       <div style={{ height: NAVBAR_HEIGHT }} />
 
-      {/* LOCK the total vertical height available for the page content! */}
       <main
         className="flex-1 flex flex-col items-center justify-center relative z-0 pb-16 px-4"
         style={{
           minHeight: 0,
-          height: `calc(100vh - ${NAVBAR_HEIGHT}px - 64px)`  // subtract nav and some footer mb
+          height: `calc(100vh - ${NAVBAR_HEIGHT}px - 64px)`,
         }}
       >
         <div className="absolute inset-0 bg-gradient-to-bl from-emerald-900/60 via-green-900/40 to-yellow-100/20 backdrop-blur-sm -z-10" />
 
-        {/* OUTER FLEX PARENT — LOCK HEIGHT TO PREVENT UP/JUMP */}
         <div
           className="w-full flex flex-col items-center justify-center flex-1"
           style={{ height: 580 }}
         >
           <div className="relative w-full flex justify-center items-center" style={{ height: 550 }}>
-            {/* Arrows */}
             {totalImages > 1 && (
               <>
                 <div className="absolute left-2 top-1/2 -translate-y-1/2 z-20">
@@ -110,11 +107,11 @@ function ProductCarouselPage() {
             <div className="
                 max-w-4xl w-full mx-auto rounded-3xl shadow-2xl bg-black/60
                 backdrop-blur-lg border-2 border-green-700 ring-4 ring-green-500/40
-                flex flex-col md:flex-row overflow-hidden relative z-10
+                flex flex-col md:flex-row overflow-hidden items-stretch relative z-10
                 h-[520px] min-h-[520px] max-h-[520px]
             ">
               {/* --- IMAGE CONTAINER --- */}
-              <div className="md:w-1/2 p-8 flex items-center justify-center relative min-h-[18rem]">
+              <div className="md:w-1/2 p-8 flex items-center justify-center h-full">
                 <div className="w-[320px] h-[320px] flex items-center justify-center relative">
                   <AnimatePresence initial={false} custom={direction}>
                     <motion.img
@@ -148,12 +145,16 @@ function ProductCarouselPage() {
               </div>
 
               {/* --- PRODUCT DETAILS --- */}
-              <div className="md:w-1/2 p-8 flex flex-col justify-between gap-6 text-white overflow-hidden">
-                <div className="flex-1 overflow-auto">
+              <div className="md:w-1/2 p-8 flex flex-col justify-between gap-6 text-white h-full overflow-auto">
+                <div>
                   <h2 className="text-3xl font-serif font-bold mb-2 drop-shadow">
                     {product.name}
                   </h2>
                   <p className="font-medium mb-3">{product.description}</p>
+                  {/* ADD DETAILS HERE */}
+                  {product.details && (
+                    <p className="text-sm mb-4 text-green-200">{product.details}</p>
+                  )}
                   <div className="flex flex-wrap gap-2 mb-4">
                     {product.tags.map((tag) => (
                       <Badge
