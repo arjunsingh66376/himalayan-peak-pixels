@@ -2,53 +2,7 @@ import { useState } from 'react';
 import { Button } from './ui/button';
 import { Card, CardContent } from './ui/card';
 import { useNavigate } from 'react-router-dom';
-
-// Image imports (edit these paths as per your project)
-import honey from '../assets/honeyfront.jpg';
-import turmeric from '../assets/turmeric.jpg';
-import pinecone from '../assets/pinecone.jpg';
-import root from '../assets/root.jpg';
-import berry from '../assets/berry.jpg';
-import mushroom from '../assets/mushroom.jpg';
-
-const products = [
-  {
-    id: 1,
-    name: "Wild Himalayan Honey",
-    category: "Honey",
-    image: honey,
-  },
-  {
-    id: 2,
-    name: "Premium Turmeric Powder",
-    category: "Herbs",
-    image: turmeric,
-  },
-  {
-    id: 3,
-    name: "Himalayan Pine Cones",
-    category: "Forest Products",
-    image: pinecone,
-  },
-  {
-    id: 4,
-    name: "Wild Ginseng Root",
-    category: "Herbs",
-    image: root,
-  },
-  {
-    id: 5,
-    name: "Mountain Berry Mix",
-    category: "Berries",
-    image: berry,
-  },
-  {
-    id: 6,
-    name: "Sacred Cordyceps",
-    category: "Mushrooms",
-    image: mushroom,
-  },
-];
+import products from '../dataset/data';  // Adjust path to your data.js as needed
 
 const categories = ["All", "Honey", "Herbs", "Forest Products", "Berries", "Mushrooms"];
 
@@ -59,15 +13,20 @@ const ProductCatalog = () => {
   const filteredProducts =
     selectedCategory === "All"
       ? products
-      : products.filter((product) => product.category === selectedCategory);
+      : products.filter(product => product.category === selectedCategory);
 
   const handleViewAllProducts = () => {
     navigate('/products');
   };
 
+  const handleCardClick = (id) => {
+    navigate(`/product/${id}`);
+  };
+
   return (
     <section id="products" className="py-20 bg-product-section">
       <div className="container mx-auto px-4">
+        {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-serif font-bold text-foreground mb-6">
             Premium Collection
@@ -80,7 +39,7 @@ const ProductCatalog = () => {
 
         {/* Category Filter */}
         <div className="flex flex-wrap justify-center gap-4 mb-12">
-          {categories.map((category) => (
+          {categories.map(category => (
             <Button
               key={category}
               variant={selectedCategory === category ? "default" : "outline"}
@@ -97,9 +56,16 @@ const ProductCatalog = () => {
           {filteredProducts.map((product, index) => (
             <Card
               key={product.id}
-              // 'animate-float' comes from your tailwind.config.ts!
-              className={`animate-float flex flex-col rounded-2xl bg-white/90 w-[320px] h-[410px] mx-auto p-0 shadow-2xl shadow-gray-400/30`}
+              className={`animate-float flex flex-col rounded-2xl bg-white/90 w-[320px] h-[410px] mx-auto p-0 shadow-2xl shadow-gray-400/30 cursor-pointer`}
               style={{ animationDelay: `${index * 0.7}s` }}
+              onClick={() => handleCardClick(product.id)}
+              role="button"
+              tabIndex={0}
+              onKeyPress={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  handleCardClick(product.id);
+                }
+              }}
             >
               <div className="relative flex flex-col items-center h-full w-full">
                 {/* Optional: Blurred floating "halo" shadow */}
@@ -107,7 +73,7 @@ const ProductCatalog = () => {
                 <CardContent className="flex flex-col h-full items-center justify-between p-0 w-full relative z-10">
                   <div className="w-full h-[330px] overflow-hidden rounded-t-2xl">
                     <img
-                      src={product.image}
+                      src={product.images[0]} // Use the first image from the product images array
                       alt={product.name}
                       className="w-full h-full object-cover"
                     />
