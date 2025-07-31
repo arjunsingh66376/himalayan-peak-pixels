@@ -5,6 +5,7 @@ import Owl from "../../src/assets/owl.jpg";
 import water from "../../src/assets/bisleri.jpg";
 import Navigation from "@/components/Navigation";
 import tropicalFrameBg from "../assets/tropical.jpg";
+import Footer from "@/components/Footer";
 
 const products = [
   {

@@ -64,11 +64,7 @@ const NaturalOriginSection = () => {
                 </div>
               </div>
 
-              <div className="pt-6">
-                <Button variant="glass" size="lg" className="text-lg px-8 py-4">
-                  Discover Our Story
-                </Button>
-              </div>
+              
             </div>
 
             {/* Right Side - Stats/Visual Element */}

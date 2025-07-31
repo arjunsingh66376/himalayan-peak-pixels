@@ -69,7 +69,7 @@ function ProductCarouselPage() {
         className="flex-1 flex flex-col items-center justify-center relative z-0 pb-16 px-4"
         style={{
           minHeight: 0,
-          height: `calc(100vh - ${NAVBAR_HEIGHT}px - 64px)`,
+          height: `calc(100vh - ${NAVBAR_HEIGHT}px - 64px)`, // adjust footer offset as needed
         }}
       >
         <div className="absolute inset-0 bg-gradient-to-bl from-emerald-900/60 via-green-900/40 to-yellow-100/20 backdrop-blur-sm -z-10" />
@@ -112,7 +112,7 @@ function ProductCarouselPage() {
             ">
               {/* --- IMAGE CONTAINER --- */}
               <div className="md:w-1/2 p-8 flex items-center justify-center h-full">
-                <div className="w-[320px] h-[320px] flex items-center justify-center relative">
+                <div className="w-[320px] h-[320px] flex items-center justify-center relative min-w-[320px] min-h-[320px]">
                   <AnimatePresence initial={false} custom={direction}>
                     <motion.img
                       key={imageIndex}
@@ -122,7 +122,7 @@ function ProductCarouselPage() {
                       animate={{ opacity: 1, x: 0 }}
                       exit={{ opacity: 0, x: direction > 0 ? -120 : 120 }}
                       transition={{ duration: 0.5 }}
-                      className="object-contain w-full h-full rounded-2xl shadow-xl"
+                      className="object-cover w-full h-full rounded-2xl shadow-xl"
                       style={{ willChange: "transform" }}
                     />
                   </AnimatePresence>
@@ -151,7 +151,6 @@ function ProductCarouselPage() {
                     {product.name}
                   </h2>
                   <p className="font-medium mb-3">{product.description}</p>
-                  {/* ADD DETAILS HERE */}
                   {product.details && (
                     <p className="text-sm mb-4 text-green-200">{product.details}</p>
                   )}

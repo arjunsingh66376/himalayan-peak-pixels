@@ -1,8 +1,15 @@
+import { useNavigate } from 'react-router-dom';
 import { Button } from './ui/button';
 import { Users, Leaf, Globe, Package } from 'lucide-react';
 import bgImage from '../assets/mountain-valley.jpg';
 
 const LivelihoodSection = () => {
+  const navigate = useNavigate();
+
+  const goToBulkOrder = () => {
+    navigate('/bulk_order');  // Ensure this matches your route path to BulkOrderPage
+  };
+
   return (
     <section className="relative py-20 overflow-hidden">
       {/* Background Image */}
@@ -28,7 +35,6 @@ const LivelihoodSection = () => {
 
           {/* Features Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
-            {/* Livelihood */}
             <div className="glass-card p-8 text-center hover-lift">
               <Users className="h-16 w-16 text-accent mx-auto mb-6" />
               <h3 className="text-xl font-semibold text-white mb-4">Villager Livelihood</h3>
@@ -37,7 +43,6 @@ const LivelihoodSection = () => {
               </p>
             </div>
 
-            {/* Natural */}
             <div className="glass-card p-8 text-center hover-lift">
               <Leaf className="h-16 w-16 text-accent mx-auto mb-6" />
               <h3 className="text-xl font-semibold text-white mb-4">100% Natural</h3>
@@ -46,7 +51,6 @@ const LivelihoodSection = () => {
               </p>
             </div>
 
-            {/* Global Delivery */}
             <div className="glass-card p-8 text-center hover-lift">
               <Globe className="h-16 w-16 text-accent mx-auto mb-6" />
               <h3 className="text-xl font-semibold text-white mb-4">Fast Global Delivery</h3>
@@ -55,7 +59,6 @@ const LivelihoodSection = () => {
               </p>
             </div>
 
-            {/* Bulk Orders */}
             <div className="glass-card p-8 text-center hover-lift">
               <Package className="h-16 w-16 text-accent mx-auto mb-6" />
               <h3 className="text-xl font-semibold text-white mb-4">Bulk Orders</h3>
@@ -95,15 +98,20 @@ const LivelihoodSection = () => {
                 Join our mission to bring authentic Uttarakhand treasures to the world while supporting mountain communities.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button variant="glass" size="lg" className="text-lg px-8 py-4">
+                <Button 
+                  variant="glass" 
+                  size="lg" 
+                  className="text-lg px-8 py-4"
+                  onClick={goToBulkOrder}
+                >
                   Explore Bulk Orders
                 </Button>
                 <Button 
-  size="lg"
-  className="bg-white text-black hover:bg-white/90 text-lg px-8 py-4"
->
-  Know  Our  Story  
-</Button>
+                  size="lg"
+                  className="bg-white text-black hover:bg-white/90 text-lg px-8 py-4"
+                >
+                  Know Our Story
+                </Button>
               </div>
             </div>
           </div>
