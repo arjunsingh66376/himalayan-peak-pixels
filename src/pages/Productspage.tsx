@@ -16,7 +16,23 @@ import tropicalFrameBg from '../assets/tropical.jpg';
 import greenLeavesBg from '../assets/productsbg.jpg';
 import { Link } from "react-router-dom";
 
-const products = [
+import { useLikedProducts } from '@/context/LikedProductsContext'; // Make sure this hook is defined as per context!
+
+interface Product {
+  id: number;
+  name: string;
+  category: string;
+  price: number;
+  originalPrice?: number;
+  rating: number;
+  reviews: number;
+  image: string;
+  description: string;
+  tags: string[];
+  inStock: boolean;
+}
+
+const products: Product[] = [
   {
     id: 1,
     name: "Wild Himalayan Honey",
@@ -97,33 +113,28 @@ const categories = ["All", "Honey", "Herbs", "Forest Products", "Berries", "Mush
 
 const ProductsPage = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
-  const [favorites, setFavorites] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const { liked, toggle } = useLikedProducts(); // Using global liked products state
 
+  // Filter products by category and search term
   const filteredProducts = products
     .filter(product => selectedCategory === "All" || product.category === selectedCategory)
     .filter(product => product.name.toLowerCase().includes(searchTerm.toLowerCase()));
-
-  const toggleFavorite = (productId) => {
-    setFavorites(prev =>
-      prev.includes(productId)
-        ? prev.filter(id => id !== productId)
-        : [...prev, productId]
-    );
-  };
 
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
 
       {/* Hero Section */}
-      <section className="relative h-[70vh] flex items-center justify-center overflow-hidden"
+      <section
+        className="relative h-[70vh] flex items-center justify-center overflow-hidden"
         style={{
           backgroundImage: `url(${tropicalFrameBg})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat'
-        }}>
+        }}
+      >
         <div className="absolute inset-0 bg-black/40" />
         <div className="relative z-10 text-center text-white max-w-4xl mx-auto px-4">
           <h1 className="text-6xl md:text-7xl font-serif font-bold mb-6 animate-fade-in">
@@ -166,13 +177,15 @@ const ProductsPage = () => {
       </section>
 
       {/* Products Grid */}
-      <section className="py-16 relative"
+      <section
+        className="py-16 relative"
         style={{
           backgroundImage: `url(${greenLeavesBg})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat'
-        }}>
+        }}
+      >
         <div className="absolute inset-0 bg-white/10" />
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-12">
@@ -194,7 +207,7 @@ const ProductsPage = () => {
                   `}
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
-                  {/* IMAGE (even larger now) */}
+                  {/* Large Image */}
                   <div className="relative h-[250px] w-full bg-gradient-mountain flex items-center justify-center overflow-hidden flex-shrink-0">
                     <img
                       src={product.image}
@@ -212,12 +225,12 @@ const ProductsPage = () => {
                       className="absolute top-4 right-4 bg-white/20 hover:bg-white/30 backdrop-blur-sm"
                       onClick={e => {
                         e.preventDefault();
-                        toggleFavorite(product.id);
+                        toggle(product.id);
                       }}
                     >
                       <Heart
                         className={`h-5 w-5 transition-colors ${
-                          favorites.includes(product.id)
+                          liked.includes(product.id)
                             ? 'fill-red-500 text-red-500'
                             : 'text-white'
                         }`}
@@ -231,7 +244,8 @@ const ProductsPage = () => {
                       </div>
                     )}
                   </div>
-                  {/* MAIN INFO (flex-1, clamped) */}
+
+                  {/* Product Info */}
                   <div className="flex-1 flex flex-col justify-between p-4 min-h-0">
                     <div>
                       <h3 className="text-xl font-semibold mb-1 line-clamp-1">{product.name}</h3>
@@ -273,7 +287,8 @@ const ProductsPage = () => {
                       </div>
                     </div>
                   </div>
-                  {/* BUTTON always at bottom */}
+
+                  {/* Add to Cart Button */}
                   <CardFooter className="p-4 pt-0">
                     <Button
                       className="w-full group"

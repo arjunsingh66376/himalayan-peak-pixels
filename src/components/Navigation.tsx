@@ -69,6 +69,10 @@ const Navigation = () => {
               Bulk Order
             </a>
 
+            <Link to="/liked" className="text-white/90 hover:text-goldenYellow transition-colors">
+  Liked Product
+</Link>
+
             <a
               href="/about"
               className={`text-white/90 hover:text-goldenYellow transition-colors ${
@@ -141,6 +145,9 @@ const Navigation = () => {
               >
                 Sustainability
               </a>
+
+             
+
 
               <a
                 href="/#about"

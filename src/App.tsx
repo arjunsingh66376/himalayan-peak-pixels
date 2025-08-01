@@ -10,6 +10,8 @@ import About from "./pages/AboutPage";
 import Contact from "./pages/ContactUsPage";
 import BulkOrderPage from "./pages/BulkOrder";
 import ProductCarouselPage from "./pages/ProductCarouselPage";
+import { LikedProductsProvider } from "./context/LikedProductsContext";
+import LikedProductsPage from "./pages/LikedProductsPage";
 
 const queryClient = new QueryClient();
 import ScrollToTop from "./components/ScrollToTop";
@@ -21,6 +23,8 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
       <ScrollToTop/>
+      <LikedProductsProvider>
+
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/products" element={<ProductsPage />} />
@@ -28,11 +32,13 @@ const App = () => (
           <Route path="/contact" element={<Contact/>} />
           <Route path="/bulk_order" element={<BulkOrderPage/>}/>
           <Route path="/product/:id" element={<ProductCarouselPage />} />
+          <Route path="/liked" element={<LikedProductsPage />} />
           
         
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
+      </LikedProductsProvider>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
