@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { ShoppingCart, Heart } from "lucide-react";
 import { Link } from "react-router-dom";
 import products from "../dataset/data.js"; // adjust this import as per your setup
-import likedBg from "../assets/likedproductb.jpg"; // adjust the path if needed
+import likedBg from "../assets/likedproductbg1.jpg"; // adjust the path if needed
 
 export default function LikedProductsPage() {
   const { liked, toggle } = useLikedProducts();
