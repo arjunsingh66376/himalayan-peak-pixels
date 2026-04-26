@@ -6,7 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import ProductsPage from "./pages/Productspage";
 import NotFound from "./pages/NotFound";
-import About from "./pages/AboutPage";
+import About from "./pages/Aboutpage";
 import Contact from "./pages/ContactUsPage";
 import BulkOrderPage from "./pages/BulkOrder";
 import ProductCarouselPage from "./pages/ProductCarouselPage";
