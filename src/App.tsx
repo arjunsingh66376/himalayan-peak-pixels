@@ -15,6 +15,7 @@ import LikedProductsPage from "./pages/LikedProductsPage";
 
 const queryClient = new QueryClient();
 import ScrollToTop from "./components/ScrollToTop";
+import PolicyPage from "./pages/PolicyPage";
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -33,7 +34,9 @@ const App = () => (
           <Route path="/bulk_order" element={<BulkOrderPage/>}/>
           <Route path="/product/:id" element={<ProductCarouselPage />} />
           <Route path="/liked" element={<LikedProductsPage />} />
-          
+          <Route path="/shipping-info"     element={<PolicyPage />} />
+          <Route path="/privacy-policy"    element={<PolicyPage />} />
+          <Route path="/terms-conditions"  element={<PolicyPage />} />          
         
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />

@@ -6,6 +6,12 @@ import water from "../../src/assets/bisleri.jpg";
 import Navigation from "@/components/Navigation";
 import tropicalFrameBg from "../assets/tropical.jpg";
 import Footer from "@/components/Footer";
+import { useNavigate } from "react-router-dom";
+import { useToast } from "@/hooks/use-toast";
+
+const handlesubmit = () => {
+  alert("Order submitted successfully");
+}
 
 const products = [
   {
@@ -22,7 +28,7 @@ const products = [
   },
 ];
 
-function ProductShowcase({ onAdd }) {
+function ProductShowcase({ onAdd, toast }) {
   return (
     <div className="w-full" style={{ marginTop: "5%" }}>
       <div className="bg-green-100 p-8 rounded-lg shadow-lg max-w-full">
@@ -46,7 +52,13 @@ function ProductShowcase({ onAdd }) {
                 {product.description}
               </p>
               <button
-                onClick={() => onAdd(idx)}
+                onClick={() => {
+                  onAdd(idx);
+                  toast({
+                    title: "✅ Item Added!",
+                    description: `${product.name} has been added to your order.`,
+                  });
+                }}
                 className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition"
                 type="button"
               >
@@ -190,6 +202,7 @@ function OrderForm({ selectedProduct, onDetailsChange, orderDetails }) {
       <button
         type="submit"
         className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
+        onClick={handlesubmit}
       >
         Submit Order
       </button>
@@ -219,6 +232,7 @@ function TermsAndConditions() {
 }
 
 export default function BulkOrderPage() {
+  const { toast } = useToast();
   // Products that have been "added"; store product indices
   const [selectedProduct, setSelectedProduct] = useState([]);
   // Order details for each product (by index), e.g., {quantity, desc}
@@ -265,7 +279,7 @@ export default function BulkOrderPage() {
       {/* Blank white div with height 30px and margin-bottom 10px */}
       <div className="w-full bg-white h-[30px] mb-[10px]" />
 
-      <ProductShowcase onAdd={handleAddProduct} />
+      <ProductShowcase onAdd={handleAddProduct} toast={toast} />
 
       <div className="max-w-5xl mx-auto space-y-8">
         <OrderForm

@@ -9,6 +9,9 @@ const LivelihoodSection = () => {
   const goToBulkOrder = () => {
     navigate('/bulk_order');  // Ensure this matches your route path to BulkOrderPage
   };
+  const goAbout = () => {
+    navigate('/About');  // Ensure this matches your route path to BulkOrderPage
+  };
 
   return (
     <section className="relative py-20 overflow-hidden">
@@ -109,6 +112,7 @@ const LivelihoodSection = () => {
                 <Button 
                   size="lg"
                   className="bg-white text-black hover:bg-white/90 text-lg px-8 py-4"
+                  onClick={goAbout}
                 >
                   Know Our Story
                 </Button>

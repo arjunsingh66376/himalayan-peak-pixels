@@ -15,6 +15,7 @@ import mushroom from '../assets/mushroom.jpg';
 import tropicalFrameBg from '../assets/tropical.jpg';
 import greenLeavesBg from '../assets/productsbg.jpg';
 import { Link } from "react-router-dom";
+import { useToast } from "@/hooks/use-toast";
 
 import { useLikedProducts } from '@/context/LikedProductsContext'; // Make sure this hook is defined as per context!
 
@@ -115,6 +116,8 @@ const ProductsPage = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [searchTerm, setSearchTerm] = useState("");
   const { liked, toggle } = useLikedProducts(); // Using global liked products state
+  const { toast } = useToast(); // ← add this
+
 
   // Filter products by category and search term
   const filteredProducts = products
@@ -220,22 +223,29 @@ const ProductsPage = () => {
                       </Badge>
                     )}
                     <Button
-                      variant="ghost"
-                      size="icon"
-                      className="absolute top-4 right-4 bg-white/20 hover:bg-white/30 backdrop-blur-sm"
-                      onClick={e => {
-                        e.preventDefault();
-                        toggle(product.id);
-                      }}
-                    >
-                      <Heart
-                        className={`h-5 w-5 transition-colors ${
-                          liked.includes(product.id)
-                            ? 'fill-red-500 text-red-500'
-                            : 'text-white'
-                        }`}
-                      />
-                    </Button>
+  variant="ghost"
+  size="icon"
+  className="absolute top-4 right-4 bg-white/20 hover:bg-white/30 backdrop-blur-sm"
+  onClick={e => {
+    e.preventDefault();
+    const isLiked = liked.includes(product.id);
+    toggle(product.id);
+    toast({
+      title: isLiked ? "💔 Removed from Liked" : "❤️ Added to Liked!",
+      description: isLiked
+        ? `${product.name} removed from your liked products.`
+        : `${product.name} added to your liked products.`,
+    });
+  }}
+>
+  <Heart
+    className={`h-5 w-5 transition-colors ${
+      liked.includes(product.id)
+        ? 'fill-red-500 text-red-500'
+        : 'text-white'
+    }`}
+  />
+</Button>
                     {!product.inStock && (
                       <div className="absolute inset-0 bg-black/60 flex items-center justify-center">
                         <Badge variant="destructive" className="text-sm">

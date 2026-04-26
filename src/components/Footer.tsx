@@ -1,6 +1,7 @@
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Separator } from './ui/separator';
+import { Link } from "react-router-dom";
 import { 
   Facebook, 
   Instagram, 
@@ -14,6 +15,13 @@ import {
   Truck,
   Shield
 } from 'lucide-react';
+
+const links = [
+  { name: "Our Products", path: "/Products" },
+  { name: "About Us", path: "/About" },
+  { name: "Contact", path: "/contact" },
+  { name: "Wholesale", path: "/bulk_order" },
+];
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -50,54 +58,40 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-2">
-              {[
-                "Our Products",
-                
-                "About Us",
-                "Blog",
-                "Contact",
-              
-                "Wholesale",
-                "Careers"
-              ].map((link) => (
-                <li key={link}>
-                  <a 
-                    href="#" 
-                    className="text-primary-foreground/80 hover:text-primary-foreground transition-colors"
-                  >
-                    {link}
-                  </a>
-                </li>
-              ))}
-            </ul>
+  {links.map((link) => (
+    <li key={link.name}>
+      <Link
+        to={link.path}
+        className="text-primary-foreground/80 hover:text-primary-foreground transition-colors"
+      >
+        {link.name}
+      </Link>
+    </li>
+  ))}
+</ul>
           </div>
 
           {/* Customer Service */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Customer Service</h3>
-            <ul className="space-y-2">
-              {[
-                "FAQ",
-                "Shipping Info",
-               
-               
-                "Privacy Policy",
-                "Terms of Service",
-                
-                "Support"
-              ].map((link) => (
-                <li key={link}>
-                  <a 
-                    href="#" 
-                    className="text-primary-foreground/80 hover:text-primary-foreground transition-colors"
-                  >
-                    {link}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
+  <h3 className="text-lg font-semibold mb-4">Customer Service</h3>
+  <ul className="space-y-2">
+    {[
+      { name: "FAQ",               path: "/faq" },
+      { name: "Shipping Info",     path: "/shipping-info" },
+      { name: "Privacy Policy",    path: "/privacy-policy" },
+      { name: "Terms of Service",  path: "/terms-conditions" },
+    ].map((link) => (
+      <li key={link.name}>
+        <Link
+          to={link.path}
+          className="text-primary-foreground/80 hover:text-primary-foreground transition-colors"
+        >
+          {link.name}
+        </Link>
+      </li>
+    ))}
+  </ul>
+</div>
           {/* Contact & Newsletter */}
           <div>
             <h3 className="text-lg font-semibold mb-4">Stay Connected</h3>
