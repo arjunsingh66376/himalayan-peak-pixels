@@ -8,9 +8,10 @@ import { ShoppingCart, Heart, Star } from "lucide-react";
 import { Link } from "react-router-dom";
 import products from "../dataset/data"; // adjust if needed
 import likedBg from "../assets/likedproductbg1.jpg"; // adjust if needed
-
+import { useCart } from "@/context/CartContext";
 export default function LikedProductsPage() {
   const { liked, toggle } = useLikedProducts();
+  const { addToCart } = useCart();
   const likedProducts = products.filter((p) => liked.includes(p.id));
 
   return (
@@ -120,6 +121,10 @@ export default function LikedProductsPage() {
                       className="w-full group"
                       disabled={!product.inStock}
                       variant={product.inStock ? "default" : "secondary"}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        addToCart(product);
+                      }}
                     >
                       {product.inStock ? (
                         <>

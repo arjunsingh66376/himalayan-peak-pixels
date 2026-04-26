@@ -11,6 +11,7 @@ import Contact from "./pages/ContactUsPage";
 import BulkOrderPage from "./pages/BulkOrder";
 import ProductCarouselPage from "./pages/ProductCarouselPage";
 import { LikedProductsProvider } from "./context/LikedProductsContext";
+import { CartProvider } from "./context/CartContext";
 import LikedProductsPage from "./pages/LikedProductsPage";
 
 const queryClient = new QueryClient();
@@ -25,7 +26,7 @@ const App = () => (
       <BrowserRouter>
       <ScrollToTop/>
       <LikedProductsProvider>
-
+      <CartProvider>
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/products" element={<ProductsPage />} />
@@ -41,6 +42,7 @@ const App = () => (
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
+      </CartProvider>
       </LikedProductsProvider>
       </BrowserRouter>
     </TooltipProvider>

@@ -1,62 +1,17 @@
-import { useState } from 'react';
 import { Button } from './ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { Badge } from './ui/badge';
 import { Separator } from './ui/separator';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from './ui/sheet';
 import { Trash2, Plus, Minus, ShoppingCart as ShoppingCartIcon, CreditCard } from 'lucide-react';
-
-interface CartItem {
-  id: number;
-  name: string;
-  price: number;
-  quantity: number;
-  image: string;
-  category: string;
-}
+import { useCart } from '@/context/CartContext';
 
 const ShoppingCart = () => {
-  const [cartItems, setCartItems] = useState<CartItem[]>([
-    {
-      id: 1,
-      name: "Wild Himalayan Honey",
-      price: 29.99,
-      quantity: 2,
-      image: "🍯",
-      category: "Honey"
-    },
-    {
-      id: 2,
-      name: "Premium Turmeric Powder",
-      price: 19.99,
-      quantity: 1,
-      image: "🌿",
-      category: "Herbs"
-    }
-  ]);
+  const { cartItems, updateQuantity, removeFromCart, itemCount, subtotal } = useCart();
 
-  const updateQuantity = (id: number, newQuantity: number) => {
-    if (newQuantity === 0) {
-      removeItem(id);
-      return;
-    }
-    setCartItems(items =>
-      items.map(item =>
-        item.id === id ? { ...item, quantity: newQuantity } : item
-      )
-    );
-  };
-
-  const removeItem = (id: number) => {
-    setCartItems(items => items.filter(item => item.id !== id));
-  };
-
-  const subtotal = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
   const shipping = subtotal > 50 ? 0 : 9.99;
   const tax = subtotal * 0.08; // 8% tax
   const total = subtotal + shipping + tax;
-
-  const itemCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
   return (
     <Sheet>
@@ -96,8 +51,12 @@ const ShoppingCart = () => {
                   <CardContent className="p-4">
                     <div className="flex items-start space-x-4">
                       {/* Product Image */}
-                      <div className="w-16 h-16 bg-gradient-mountain rounded-lg flex items-center justify-center text-2xl">
-                        {item.image}
+                      <div className="w-16 h-16 bg-gradient-mountain rounded-lg flex items-center justify-center text-2xl flex-shrink-0">
+                        {item.image.startsWith('data:') || item.image.startsWith('http') || item.image.startsWith('/') || item.image.includes('.') ? (
+                          <img src={item.image} alt={item.name} className="w-full h-full object-cover rounded-lg" />
+                        ) : (
+                          item.image
+                        )}
                       </div>
 
                       {/* Product Details */}
@@ -145,7 +104,7 @@ const ShoppingCart = () => {
                           <Button
                             variant="ghost"
                             size="sm"
-                            onClick={() => removeItem(item.id)}
+                            onClick={() => removeFromCart(item.id)}
                             className="text-destructive hover:text-destructive hover:bg-destructive/10"
                           >
                             <Trash2 className="h-4 w-4" />

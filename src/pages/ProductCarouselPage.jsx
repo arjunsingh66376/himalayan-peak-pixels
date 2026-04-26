@@ -8,7 +8,7 @@ import Footer from "../components/Footer";
 import { Button } from "../components/ui/button";
 import { Badge } from "../components/ui/badge";
 import productdetailbg from "../assets/productdetailbg.jpg"; // Adjust path as needed
-
+import { useCart } from "../context/CartContext";
 const NAVBAR_HEIGHT = 80;
 
 function ProductCarouselPage() {
@@ -20,7 +20,7 @@ function ProductCarouselPage() {
   const [imageIndex, setImageIndex] = useState(0);
   const [direction, setDirection] = useState(0);
   const [favorites, setFavorites] = useState([]);
-
+  const { addToCart } = useCart();
   useEffect(() => {
     setImageIndex(0);
   }, [productId]);
@@ -192,6 +192,7 @@ function ProductCarouselPage() {
                     className="flex-1 bg-gradient-to-br from-green-700 via-green-600 to-green-500 text-white font-bold shadow-xl rounded-full"
                     size="lg"
                     disabled={!product.inStock}
+                    onClick={() => addToCart(product)}
                   >
                     <ShoppingCart className="mr-2 h-5 w-5" />
                     {product.inStock ? "Add to Cart" : "Out of Stock"}

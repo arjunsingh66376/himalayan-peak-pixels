@@ -18,7 +18,7 @@ import { Link } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
 
 import { useLikedProducts } from '@/context/LikedProductsContext'; // Make sure this hook is defined as per context!
-
+import { useCart } from '@/context/CartContext';
 interface Product {
   id: number;
   name: string;
@@ -117,7 +117,7 @@ const ProductsPage = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const { liked, toggle } = useLikedProducts(); // Using global liked products state
   const { toast } = useToast(); // ← add this
-
+  const { addToCart } = useCart();
 
   // Filter products by category and search term
   const filteredProducts = products
@@ -304,6 +304,10 @@ const ProductsPage = () => {
                       className="w-full group"
                       disabled={!product.inStock}
                       variant={product.inStock ? "default" : "secondary"}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        addToCart(product);
+                      }}
                     >
                       {product.inStock ? (
                         <>

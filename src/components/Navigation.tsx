@@ -17,10 +17,8 @@ const Navigation = () => {
   // Helper function to check if a link is active
   const isActive = (path) => {
     if (path === '/') {
-      // Special case for home page
       return currentPath === '/';
     }
-    // For other paths, also treat subpaths as active (e.g. /products/123)
     return currentPath.startsWith(path);
   };
 
@@ -28,15 +26,15 @@ const Navigation = () => {
     <nav className="fixed top-0 left-0 right-0 z-50 glass-card border-0 border-b border-white/20">
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
-          
+
           {/* LOGO & COMPANY NAME */}
           <Link to="/" className="flex items-center space-x-3 text-2xl font-serif font-bold text-white">
             <span>Himalayan Care</span>
-            <img 
+            <img
               src={logo}
               alt="Himalayan Care Logo"
-              className="h-10 w-auto"        // Adjust logo height if needed
-              style={{ maxHeight: '40px', width: 'auto' }} // Inline fallback style
+              className="h-10 w-auto"
+              style={{ maxHeight: '40px', width: 'auto' }}
             />
           </Link>
 
@@ -69,9 +67,14 @@ const Navigation = () => {
               Bulk Order
             </a>
 
-            <Link to="/liked" className="text-white/90 hover:text-goldenYellow transition-colors">
-  Liked Product
-</Link>
+            <Link
+              to="/liked"
+              className={`text-white/90 hover:text-goldenYellow transition-colors ${
+                isActive('/liked') ? 'underline decoration-goldenYellow' : ''
+              }`}
+            >
+              Liked Product
+            </Link>
 
             <a
               href="/about"
@@ -100,7 +103,10 @@ const Navigation = () => {
 
             <ShoppingCart />
 
-            <Button variant="glass">Shop Now</Button>
+            {/* ✅ Shop Now → /products */}
+            <Link to="/products">
+              <Button variant="glass">Shop Now</Button>
+            </Link>
           </div>
 
           {/* MOBILE BURGER MENU BUTTON */}
@@ -146,8 +152,15 @@ const Navigation = () => {
                 Sustainability
               </a>
 
-             
-
+              <Link
+                to="/liked"
+                className={`text-white/90 hover:text-white transition-colors py-2 ${
+                  isActive('/liked') ? 'underline decoration-goldenYellow' : ''
+                }`}
+                onClick={handleNavLinkClick}
+              >
+                Liked Product
+              </Link>
 
               <a
                 href="/#about"
@@ -177,7 +190,10 @@ const Navigation = () => {
 
               <ShoppingCart />
 
-              <Button variant="glass">Shop Now</Button>
+              {/* ✅ Mobile Shop Now → /products */}
+              <Link to="/products" onClick={handleNavLinkClick}>
+                <Button variant="glass">Shop Now</Button>
+              </Link>
             </div>
           </div>
         )}
