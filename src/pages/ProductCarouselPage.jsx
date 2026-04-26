@@ -74,45 +74,39 @@ function ProductCarouselPage() {
       >
         <div className="absolute inset-0 bg-gradient-to-bl from-emerald-900/60 via-green-900/40 to-yellow-100/20 backdrop-blur-sm -z-10" />
 
-        <div
-          className="w-full flex flex-col items-center justify-center flex-1"
-          style={{ height: 580 }}
-        >
-          <div className="relative w-full flex justify-center items-center" style={{ height: 550 }}>
-            {totalImages > 1 && (
-              <>
-                <div className="absolute left-2 top-1/2 -translate-y-1/2 z-20">
-                  <Button
-                    onClick={handlePrev}
-                    variant="ghost"
-                    size="icon"
-                    className="bg-white shadow-md rounded-full p-2 hover:scale-110 transition-transform"
-                  >
-                    <ArrowLeft className="h-6 w-6 text-green-900" />
-                  </Button>
-                </div>
-                <div className="absolute right-2 top-1/2 -translate-y-1/2 z-20">
-                  <Button
-                    onClick={handleNext}
-                    variant="ghost"
-                    size="icon"
-                    className="bg-white shadow-md rounded-full p-2 hover:scale-110 transition-transform"
-                  >
-                    <ArrowRight className="h-6 w-6 text-green-900" />
-                  </Button>
-                </div>
-              </>
-            )}
+        <div className="w-full flex flex-col items-center justify-center flex-1 md:h-[580px] py-12 md:py-0">
+          <div className="relative w-full flex justify-center items-center md:h-[550px]">
+
 
             <div className="
                 max-w-4xl w-full mx-auto rounded-3xl shadow-2xl bg-black/60
                 backdrop-blur-lg border-2 border-green-700 ring-4 ring-green-500/40
                 flex flex-col md:flex-row overflow-hidden items-stretch relative z-10
-                h-[520px] min-h-[520px] max-h-[520px]
+                md:h-[520px] md:min-h-[520px] md:max-h-[520px]
             ">
               {/* --- IMAGE CONTAINER --- */}
-              <div className="md:w-1/2 p-8 flex items-center justify-center h-full">
-                <div className="w-[320px] h-[320px] flex items-center justify-center relative min-w-[320px] min-h-[320px]">
+              <div className="md:w-1/2 p-6 md:p-8 flex items-center justify-center h-full">
+                <div className="w-[300px] h-[300px] md:w-[320px] md:h-[320px] flex items-center justify-center relative min-w-[300px] min-h-[300px] md:min-w-[320px] md:min-h-[320px]">
+                  {totalImages > 1 && (
+                    <>
+                      <Button
+                        onClick={handlePrev}
+                        variant="ghost"
+                        size="icon"
+                        className="absolute left-2 top-1/2 -translate-y-1/2 z-20 bg-white shadow-md rounded-full p-2 hover:scale-110 transition-transform"
+                      >
+                        <ArrowLeft className="h-6 w-6 text-green-900" />
+                      </Button>
+                      <Button
+                        onClick={handleNext}
+                        variant="ghost"
+                        size="icon"
+                        className="absolute right-2 top-1/2 -translate-y-1/2 z-20 bg-white shadow-md rounded-full p-2 hover:scale-110 transition-transform"
+                      >
+                        <ArrowRight className="h-6 w-6 text-green-900" />
+                      </Button>
+                    </>
+                  )}
                   <AnimatePresence initial={false} custom={direction}>
                     <motion.img
                       key={imageIndex}
