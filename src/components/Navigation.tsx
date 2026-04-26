@@ -40,14 +40,14 @@ const Navigation = () => {
 
           {/* DESKTOP NAVIGATION LINKS */}
           <div className="hidden md:flex items-center space-x-8">
-            <a
-              href="/#home"
+            <Link
+              to="/"
               className={`text-white/90 hover:text-goldenYellow transition-colors ${
                 isActive('/') ? 'underline decoration-goldenYellow' : ''
               }`}
             >
               Home
-            </a>
+            </Link>
 
             <Link
               to="/products"
@@ -58,14 +58,14 @@ const Navigation = () => {
               Products
             </Link>
 
-            <a
-              href="/bulk_order"
+            <Link
+              to="/bulk_order"
               className={`text-white/90 hover:text-goldenYellow transition-colors ${
                 isActive('/bulk_order') ? 'underline decoration-goldenYellow' : ''
               }`}
             >
               Bulk Order
-            </a>
+            </Link>
 
             <Link
               to="/liked"
@@ -76,23 +76,23 @@ const Navigation = () => {
               Liked Product
             </Link>
 
-            <a
-              href="/about"
+            <Link
+              to="/about"
               className={`text-white/90 hover:text-goldenYellow transition-colors ${
                 isActive('/about') ? 'underline decoration-goldenYellow' : ''
               }`}
             >
               About
-            </a>
+            </Link>
 
-            <a
-              href="/contact"
+            <Link
+              to="/contact"
               className={`text-white/90 hover:text-goldenYellow transition-colors ${
                 isActive('/contact') ? 'underline decoration-goldenYellow' : ''
               }`}
             >
               Contact
-            </a>
+            </Link>
           </div>
 
           {/* DESKTOP ACTION BUTTONS */}
@@ -120,15 +120,15 @@ const Navigation = () => {
         {isMenuOpen && (
           <div className="md:hidden mt-4 pb-4 space-y-4">
             <div className="flex flex-col space-y-2">
-              <a
-                href="/#home"
+              <Link
+                to="/"
                 className={`text-white/90 hover:text-white transition-colors py-2 ${
                   isActive('/') ? 'underline decoration-goldenYellow' : ''
                 }`}
                 onClick={handleNavLinkClick}
               >
                 Home
-              </a>
+              </Link>
 
               <Link
                 to="/products"
@@ -140,13 +140,7 @@ const Navigation = () => {
                 Products
               </Link>
 
-              <a
-                href="/#sustainability"
-                className="text-white/90 hover:text-white transition-colors py-2"
-                onClick={handleNavLinkClick}
-              >
-                Sustainability
-              </a>
+
 
               <Link
                 to="/liked"
@@ -158,25 +152,25 @@ const Navigation = () => {
                 Liked Product
               </Link>
 
-              <a
-                href="/#about"
+              <Link
+                to="/about"
                 className={`text-white/90 hover:text-white transition-colors py-2 ${
                   isActive('/about') ? 'underline decoration-goldenYellow' : ''
                 }`}
                 onClick={handleNavLinkClick}
               >
                 About
-              </a>
+              </Link>
 
-              <a
-                href="/#contact"
+              <Link
+                to="/contact"
                 className={`text-white/90 hover:text-white transition-colors py-2 ${
                   isActive('/contact') ? 'underline decoration-goldenYellow' : ''
                 }`}
                 onClick={handleNavLinkClick}
               >
                 Contact
-              </a>
+              </Link>
             </div>
 
             <div className="flex items-center space-x-4">
