@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import tailwindcssAnimate from "tailwindcss-animate";
 
 export default {
 	darkMode: ["class"],
@@ -99,7 +100,7 @@ export default {
 				'gradient-glass': 'var(--gradient-glass)',
 				'gradient-hero': 'var(--gradient-hero)',
 'product-section': 'linear-gradient(135deg, #FFFFFF 0%, #87CEFA 50%, #FFFFFF 100%)',
-'bulk-product-bg':'url(../../src/assets/plantbg.jpg)'
+'bulk-product-bg':'url(/src/assets/plantbg.jpg)'
 		},
 			fontFamily: {
 				'serif': ['Playfair Display', 'Georgia', 'serif'],
@@ -159,5 +160,5 @@ export default {
 			}
 		}
 	},
-	plugins: [require("tailwindcss-animate")],
+	plugins: [tailwindcssAnimate],
 } satisfies Config;
