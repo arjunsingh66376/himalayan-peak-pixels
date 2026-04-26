@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Button } from './ui/button';
-import { Menu, X, User } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import ShoppingCart from './ShoppingCart';
 import { Link, useLocation } from 'react-router-dom';
 
@@ -97,10 +97,6 @@ const Navigation = () => {
 
           {/* DESKTOP ACTION BUTTONS */}
           <div className="hidden md:flex items-center space-x-4">
-            <Button variant="ghost" size="icon" className="text-white hover:bg-white/20">
-              <User className="h-5 w-5" />
-            </Button>
-
             <ShoppingCart />
 
             {/* ✅ Shop Now → /products */}
@@ -184,10 +180,6 @@ const Navigation = () => {
             </div>
 
             <div className="flex items-center space-x-4">
-              <Button variant="ghost" size="icon" className="text-white hover:bg-white/20">
-                <User className="h-5 w-5" />
-              </Button>
-
               <ShoppingCart />
 
               {/* ✅ Mobile Shop Now → /products */}

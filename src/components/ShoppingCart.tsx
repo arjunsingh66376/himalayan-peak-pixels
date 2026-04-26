@@ -2,7 +2,8 @@ import { Button } from './ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { Badge } from './ui/badge';
 import { Separator } from './ui/separator';
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from './ui/sheet';
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger, SheetClose } from './ui/sheet';
+import { Link } from 'react-router-dom';
 import { Trash2, Plus, Minus, ShoppingCart as ShoppingCartIcon, CreditCard } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
 
@@ -40,7 +41,11 @@ const ShoppingCart = () => {
             <p className="text-muted-foreground mb-6">
               Discover our premium Himalayan products and add them to your cart.
             </p>
-            <Button>Continue Shopping</Button>
+            <SheetClose asChild>
+              <Link to="/products">
+                <Button>Continue Shopping</Button>
+              </Link>
+            </SheetClose>
           </div>
         ) : (
           <div className="space-y-6">
@@ -164,9 +169,13 @@ const ShoppingCart = () => {
             </Button>
 
             {/* Continue Shopping */}
-            <Button variant="outline" className="w-full">
-              Continue Shopping
-            </Button>
+            <SheetClose asChild>
+              <Link to="/products" className="w-full block">
+                <Button variant="outline" className="w-full">
+                  Continue Shopping
+                </Button>
+              </Link>
+            </SheetClose>
           </div>
         )}
       </SheetContent>
